@@ -1,5 +1,4 @@
 import os
-import asyncio
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 
@@ -8,7 +7,7 @@ TOKEN = os.getenv("TOKEN")
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Bonjour ! Mon bot fonctionne 👍")
 
-async def main():
+def main():
     if not TOKEN:
         print("TOKEN manquant")
         return
@@ -19,7 +18,8 @@ async def main():
 
     print("Bot started")
 
-    await app.run_polling(drop_pending_updates=True)
+    # IMPORTANT : PAS DE asyncio.run
+    app.run_polling(drop_pending_updates=True)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
