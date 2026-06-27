@@ -8,10 +8,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Bonjour ! Mon bot fonctionne 👍")
 
 def main():
-    if not TOKEN:
-        print("TOKEN manquant")
-        return
-
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
